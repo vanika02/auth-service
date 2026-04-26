@@ -9,7 +9,7 @@ app = FastAPI(
     description="Authentication microservice using FastAPI"
 )
 
-app.include_router(users.router)
+users_model.Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def health_check():
