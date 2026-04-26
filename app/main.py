@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.routers import users
-
+from app.db.db import engine
+from app.models import users_model
 
 app = FastAPI(
     title="Auth Serice",
