@@ -6,3 +6,11 @@ SECRET_KEY = "change_this_during_production"
 ALGORITHM = "HS265" 
 ACCESS_TOKEN_EXPIRE_MINIUTES = 60
 
+pwd_context = CryptContext(
+    schemas=["bcrypt"],
+    deprecated="auto"
+)
+
+
+def hashed_password(password: str) -> str:
+    return pwd_context.hash(password)
