@@ -68,3 +68,29 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
         "access_token": token,
         "token_type": "bearer"
     }
+
+@router.get("/me", response_model=UserResponse)
+def me(authorization: str = Header(...), db: Session = Depends(get_db)):
+    
+    token = authorization.replace("Bearer ", "")
+
+    payload = decode_access_token(token)
+
+    if not payload:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid token"
+        )
+    
+    email = payload.get("sub")
+
+    user = db.query(User).filter(
+        User.email == email
+    ).first()
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+    return user
