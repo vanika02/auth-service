@@ -10,4 +10,13 @@ services:
       POSTGRESS_PASSWORD: strongpassword
       POSTGRESS_DB: authdb
     ports:
-      - "5432:5432"
+      - "5432:5432" 
+  app:
+    build: .
+    container_name: auth_service
+    depends_on:
+      - db 
+    ports:
+    - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://authuser:strongpassword@db:5432/authdb
