@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgress:15
+    container_name: postgress_db
+    restart: always
+    environment:
+      POSTGRESS_USER: authuser
+      POSTGRESS_PASSWORD: strongpassword
+      POSTGRESS_DB: authdb
+    ports:
+      - "5432:5432"
