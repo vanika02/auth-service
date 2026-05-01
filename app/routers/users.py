@@ -9,7 +9,7 @@ from app.schemas.user_schema import (
     UserResponse
 )
 from app.auth.auth import (
-    hash_password,
+    hashed_password,
     verify_password,
     created_access_token,
     decode_access_token
@@ -32,7 +32,7 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     new_user = User(
         username=user.username,
         email=user.email,
-        hash_password=hash_password(user.password)
+        hash_password=hashed_password(user.password)
     )
 
     db.add(new_user)
