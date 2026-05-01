@@ -14,4 +14,4 @@ class User(Base):
 
     hashed_password = Column(String, nullable=False)
 
-    created_at = Column(DateTime, default=datatime.utcnow)
+    created_at = Column(DateTime, default=datetime.utcnow)
