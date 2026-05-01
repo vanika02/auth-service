@@ -7,7 +7,7 @@ ALGORITHM = "HS265"
 ACCESS_TOKEN_EXPIRE_MINIUTES = 60
 
 pwd_context = CryptContext(
-    schemas=["bcrypt"],
+    schemes=["bcrypt"],
     deprecated="auto"
 )
 
