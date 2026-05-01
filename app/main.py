@@ -11,6 +11,9 @@ app = FastAPI(
 
 users_model.Base.metadata.create_all(bind=engine)
 
+app.include_router(users.router, prefix="/api")
+
+
 @app.get("/")
 def health_check():
     return {"message": "Auth Service Running "}
