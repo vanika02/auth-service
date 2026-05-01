@@ -3,8 +3,8 @@ from jose import jwt, JWTError
 from passlib.context import CryptContext
 
 SECRET_KEY = "change_this_during_production"
-ALGORITHM = "HS265" 
-ACCESS_TOKEN_EXPIRE_MINIUTES = 60
+ALGORITHM = "HS256" 
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 pwd_context = CryptContext(
     schemes=["bcrypt"],
@@ -28,7 +28,7 @@ def created_access_token(data: dict):
     to_encode = data.copy()
 
     expire = datetime.utcnow() + timedelta(
-        minutes=ACCESS_TOKEN_EXPIRE_MINIUTES
+        minutes=ACCESS_TOKEN_EXPIRE_MINUTES
     )
 
     to_encode.update({"exp": expire})
