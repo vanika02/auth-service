@@ -17,6 +17,8 @@ from app.auth.auth import (
 
 router = APIRouter(prefix="/users", tags=["users"])
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/users/login")
+
 @router.post("/signup")
 def signup(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(
