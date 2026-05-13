@@ -28,7 +28,14 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
             status_code=409,
             detail="Email already registered"
         )
-    
+    existing_username = db.query(User).filter(User.username == user.username).first()
+
+    if existing_username:
+        raise HTTPException(
+            status_code=409,
+            detail="Username already taken"
+        )
+        
     new_user = User(
         username=user.username,
         email=user.email,
