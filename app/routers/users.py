@@ -35,7 +35,7 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
             status_code=409,
             detail="Username already taken"
         )
-        
+
     new_user = User(
         username=user.username,
         email=user.email,
@@ -77,9 +77,15 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     }
 
 @router.get("/me", response_model=UserResponse)
-def me(authorization: str = Header(...), db: Session = Depends(get_db)):
+def me(authorization: str = Header(..., alias="Authorization"), db: Session = Depends(get_db)):
     
-    token = authorization.replace("Bearer ", "")
+    if not authorization.startswith("Bearer "):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid authorization header"
+        )
+
+    token = authorization.replace("Bearer ", "", 1)
 
     payload = decode_access_token(token)
 
