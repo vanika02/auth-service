@@ -77,16 +77,10 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     }
 
 @router.get("/me", response_model=UserResponse)
-def me(authorization: str = Header(..., alias="Authorization"), db: Session = Depends(get_db)):
-    
-    if not authorization.startswith("Bearer "):
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid authorization header"
-        )
-
-    token = authorization.replace("Bearer ", "", 1)
-
+def me(
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
+):
     payload = decode_access_token(token)
 
     if not payload:
@@ -94,7 +88,7 @@ def me(authorization: str = Header(..., alias="Authorization"), db: Session = De
             status_code=401,
             detail="Invalid token"
         )
-    
+
     email = payload.get("sub")
 
     user = db.query(User).filter(
@@ -106,4 +100,5 @@ def me(authorization: str = Header(..., alias="Authorization"), db: Session = De
             status_code=404,
             detail="User not found"
         )
+
     return user
