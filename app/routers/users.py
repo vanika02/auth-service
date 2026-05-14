@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.orm import Session
 
 from app.db.db import get_db
 from app.models.users_model import User
 from app.schemas.user_schema import (
     UserCreate,
+    UserLogin,
     UserResponse
 )
 from app.auth.auth import (
@@ -15,6 +16,7 @@ from app.auth.auth import (
 )
 
 router = APIRouter(prefix="/users", tags=["users"])
+
 
 @router.post("/signup")
 def signup(user: UserCreate, db: Session = Depends(get_db)):
@@ -52,12 +54,9 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
 
 
 @router.post("/login")
-def login(
-    form_data: OAuth2PasswordRequestForm = Depends(),
-    db: Session = Depends(get_db)
-):
+def login(user: UserLogin, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(
-        User.email == form_data.username
+        User.email == user.email
     ).first()
 
     if not db_user:
@@ -67,7 +66,7 @@ def login(
         )
 
     if not verify_password(
-        form_data.password,
+        user.password,
         db_user.hashed_password
     ):
         raise HTTPException(
@@ -87,9 +86,17 @@ def login(
 
 @router.get("/me", response_model=UserResponse)
 def me(
-    token: str = Depends(oauth2_scheme),
+    authorization: str = Header(..., alias="Authorization"),
     db: Session = Depends(get_db)
 ):
+    if not authorization.startswith("Bearer "):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid authorization header"
+        )
+
+    token = authorization.replace("Bearer ", "", 1)
+
     payload = decode_access_token(token)
 
     if not payload:
