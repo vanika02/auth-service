@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from app.db.db import get_db
@@ -16,9 +15,6 @@ from app.auth.auth import (
 )
 
 router = APIRouter(prefix="/users", tags=["users"])
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/users/login")
-
 
 @router.post("/signup")
 def signup(user: UserCreate, db: Session = Depends(get_db)):
