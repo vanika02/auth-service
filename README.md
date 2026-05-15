@@ -143,3 +143,50 @@ docker compose up --build
 http://localhost:8000/docs
 ```
 
+### Example API Usage
+
+#### Signup
+
+```
+curl -X POST http://localhost:8000/users/signup \
+-H "Content-Type: application/json" \
+-d '{
+  "username": "vanika",
+  "email": "vanika@example.com",
+  "password": "securepassword123"
+}'
+```
+
+### Login 
+```
+curl -X POST http://localhost:8000/users/login \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "vanika@example.com",
+    "password": "securepassword123"
+}'
+```
+
+### Get Current User 
+```
+curl -X GET http://localhost:8000/users/me \
+-H "Authorization: Bearer <access_token>"
+```
+
+### Authentication Flow
+
+client 
+:arrow_down:
+signup/login
+:arrow_down:
+FastAPI Router
+:arrow_down:
+Schema Validation
+:arrow_down:
+Database query 
+:arrow_down:
+password hashing / verfication
+:arrow_down:
+JWT token generation 
+:arrow_down:
+JSON response
