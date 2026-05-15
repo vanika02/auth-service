@@ -87,8 +87,9 @@ auth-service/
 
 ### Authentication Endpoints
 
-### Method          ### Endpoint            ### Description
-POST                `/users/me`             Registers a new user 
-POST                `/users/login`          Login and recieve a JWT token
-POST                `/users/me`             Get current authenticated user
+|Method|Endpoint|Description|
+|----|----------------|-----------------------------|
+|POST|`/users/me`|Registers a new user|
+|POST| `/users/login`|Login and recieve a JWT token|
+|POST|`/users/me`|Get current authenticated user|
 
