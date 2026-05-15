@@ -176,17 +176,52 @@ curl -X GET http://localhost:8000/users/me \
 ### Authentication Flow
 
 client 
-:arrow_down:
+&darr;
 signup/login
-:arrow_down:
+&darr;
 FastAPI Router
-:arrow_down:
+&darr;
 Schema Validation
-:arrow_down:
+&darr;
 Database query 
-:arrow_down:
+&darr;
 password hashing / verfication
-:arrow_down:
+&darr;
 JWT token generation 
-:arrow_down:
+&darr;
 JSON response
+
+### Deployment 
+
+This project can be deployed using Docker on cloud platforms such as:
+- Render
+- Railway
+- Fly.io
+
+After deployment, Swagger documentation is available at:
+```
+https://your-service-url.onrender.com/docs
+```
+
+### Future Improvements
+
+- Refresh tokens 
+- Role-based access control
+- Email verification
+- Password reset
+- Unit and integration tests
+- CI/CD pipeline
+
+### Key Learninga 
+
+This project helped me gain hands-on experience with:
+
+- REST API developement
+- Authentication and authorization
+- JWT tokens 
+- password hashing 
+- SQLAlchemy ORM
+- PostgreSQL
+- Docker and containerization
+- clean backend architecture
+
