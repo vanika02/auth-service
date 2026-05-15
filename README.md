@@ -175,21 +175,21 @@ curl -X GET http://localhost:8000/users/me \
 
 ### Authentication Flow
 
-client 
-&darr;
-signup/login
-&darr;
-FastAPI Router
-&darr;
-Schema Validation
-&darr;
-Database query 
-&darr;
-password hashing / verfication
-&darr;
-JWT token generation 
-&darr;
-JSON response
+client<br>
+&darr;<br>
+signup/login Request<br>
+&darr;<br>
+FastAPI Router<br>
+&darr;<br>
+Schema Validation<br>
+&darr;<br>
+Database query<br>
+&darr;<br>
+password hashing / verfication<br>
+&darr;<br>
+JWT token generation<br> 
+&darr;<br>
+JSON response<br>
 
 ### Deployment 
 
