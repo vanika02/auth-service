@@ -90,6 +90,27 @@ auth-service/
 |Method|Endpoint|Description|
 |----|----------------|-----------------------------|
 |POST|`/users/me`|Registers a new user|
-|POST| `/users/login`|Login and recieve a JWT token|
+|POST|`/users/login`|Login and recieve a JWT token|
 |POST|`/users/me`|Get current authenticated user|
 
+## Local Development Setup
+
+1. ### Clone the Repository 
+
+```
+git clone https://github.com/vanika02/auth-service.git
+cd auth-service
+```
+
+2. ### Create virtual environment 
+
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. ### Install Dependencies
+
+```
+pip install -r requirements.txt
+```
