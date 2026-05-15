@@ -95,22 +95,51 @@ auth-service/
 
 ## Local Development Setup
 
-1. ### Clone the Repository 
+1. #### Clone the Repository 
 
 ```
 git clone https://github.com/vanika02/auth-service.git
 cd auth-service
 ```
 
-2. ### Create virtual environment 
+2. #### Create virtual environment 
 
 ```
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-3. ### Install Dependencies
+3. #### Install Dependencies
 
 ```
 pip install -r requirements.txt
 ```
+
+4. #### Configure PostgreSQL
+
+create a PostgrSQL database and update the database URL.
+
+5. #### Run the application
+
+```
+uvicorn app.main:app --reload
+```
+
+6. #### Open swagger documentation 
+```
+http://localhost:8000/docs
+```
+
+### Running with Docker 
+
+#### Build and start containers 
+
+```
+docker compose up --build
+```
+
+#### Access the API
+```
+http://localhost:8000/docs
+```
+
