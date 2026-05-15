@@ -23,7 +23,7 @@ The goal was to build a backend service using clean architecture and modern deve
 - User login
 - password hashing with bcrypt
 - JWT token generation
-- protected /users/me endpoint
+- protected `/users/me` endpoint
 
 ### Database
 
@@ -81,5 +81,14 @@ auth-service/
 ├── requirements.txt 
 ├── README.md 
 └── .env
-
 ```
+
+## API Endpoints
+
+### Authentication Endpoints
+
+### Method          ### Endpoint            ### Description
+POST                `/users/me`             Registers a new user 
+POST                `/users/login`          Login and recieve a JWT token
+POST                `/users/me`             Get current authenticated user
+
