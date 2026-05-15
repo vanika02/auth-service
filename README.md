@@ -30,6 +30,16 @@ The goal was to build a backend service using clean architecture and modern deve
 - PostgreSQL
 - SQLALchemy ORM
 
+### API
+
+- Request validation using pydantic
+- Automatic Swagger documentation
+- Proper HTTP status codes
+
+### Devops
+
+- Dockerized application
+- Docker Compose for app + database
 
 ## Folder Structure
 
