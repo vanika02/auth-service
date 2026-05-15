@@ -41,18 +41,45 @@ The goal was to build a backend service using clean architecture and modern deve
 - Dockerized application
 - Docker Compose for app + database
 
-## Folder Structure
+## Tech Stack
+
+### Backend 
+
+- Python 3.10
+- FastAPI
+- Uvicorn
+
+### Database
+
+- PostgreSQL
+- SQLALchemy
+
+### Devops
+
+- Docker 
+- Docker Compose 
+
+## Project Structure
 
 ```
 auth-service/
-├── app/
-│   ├── main.py
-│   ├── routers/
-│   ├── models/
-│   ├── schemas/
-│   ├── services/
-│   └── db/
-├── Dockerfile
-├── requirements.txt
-└── README.md
+├── app/ 
+│ ├── main.py 
+│ ├── auth/ │ 
+│ └── auth.py 
+│ ├── db/ 
+│ │ └── db.py 
+│ ├── models/ 
+│ │ └── users_model.py 
+│ ├── schemas/ 
+│ │ └── user_schema.py 
+│ ├── routers/ 
+│ │ └── users.py 
+│ └── services/ 
+├── Dockerfile 
+├── docker-compose.yml 
+├── requirements.txt 
+├── README.md 
+└── .env
+
 ```
